@@ -1,0 +1,267 @@
+/* --- VARIABLES DE DISEÑO PROFESIONAL --- */
+:root {
+    --color-primary: #121212;      /* Fondo Oscuro/Negro Principal */
+    --color-secondary: #f4f4f4;    /* Fondo de Contenedores Claros */
+    --color-accent: #ffb700;       /* Amarillo Dorado (Acento/Ingresos) */
+    --color-text-light: #e0e0e0;   /* Texto en fondos oscuros */
+    --color-text-dark: #333333;    /* Texto en fondos claros */
+    --color-border: #cccccc;
+    --color-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* 1. Base y Estructura */
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--color-background); /* Fondo claro, aunque la cabecera será oscura */
+    color: var(--color-text-dark);
+    padding: 0;
+    margin: 0;
+    padding-top: 70px; /* Espacio para la cabecera fija */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px; /* Un poco más de ancho para sentirlo como dashboard */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 2. Cabecera (Header) - Oscura y Fija */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+    z-index: 1000;
+}
+
+.logo-text {
+    font-size: 1.6em;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+}
+.logo-text strong {
+    font-weight: 800;
+    color: var(--color-accent);
+}
+
+/* 3. Títulos y Secciones */
+h2 {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.4em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--color-accent);
+    padding-left: 10px;
+}
+
+h4 {
+    color: var(--color-text-dark);
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.section-header h3 {
+    text-align: right;
+    font-size: 1.3em;
+    padding: 15px 0;
+    color: var(--color-text-dark);
+    border-top: 1px solid #eee;
+}
+
+#totalDiario, #totalPeriodo {
+    font-weight: 900;
+    color: var(--color-accent);
+    font-size: 1.1em;
+}
+
+/* 4. Navegación/Menú */
+.nav-menu {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-button {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: #888;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95em;
+}
+
+.nav-button.active {
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-accent);
+}
+
+/* 5. Tarjetas (Cards) */
+.card {
+    background: var(--color-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--color-shadow);
+    margin-bottom: 25px;
+    border: 1px solid #f0f0f0;
+}
+
+/* 6. Formulario y Controles */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    box-sizing: border-box;
+    font-size: 0.95em;
+}
+
+.action-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
+.action-group label {
+    flex-shrink: 0;
+    font-size: 0.9em;
+    color: #555;
+    margin-right: 5px;
+}
+.action-group input {
+    flex-grow: 1;
+    margin-top: 0;
+}
+
+
+/* 7. Botones */
+button {
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+}
+
+#btnRegistrar, #btnFiltrar {
+    background: var(--color-accent);
+    color: var(--color-primary); /* Texto oscuro en fondo de acento */
+    font-weight: 800;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+#btnRegistrar:hover, #btnFiltrar:hover {
+    background: #e6a700;
+}
+
+.secondary-btn {
+    background: #444;
+    color: white;
+    font-weight: 600;
+}
+
+.secondary-btn:hover {
+    background: #666;
+}
+
+/* 8. Métricas de Informes */
+.card-metrics {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.total-box {
+    flex-basis: 32%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.total-box span {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+}
+
+.total-box strong {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-top: 3px;
+}
+
+/* 9. Lista de Servicios */
+.lista-servicios {
+    margin-top: 10px;
+}
+
+.registro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: var(--color-card);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border-left: 4px solid var(--color-accent);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tipo-corte {
+    font-weight: 500;
+    color: var(--color-text-dark);
+}
+
+.precio-corte {
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-right: 15px;
+    font-size: 1.1em;
+}
+
+.btn-eliminar {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    color: #e63946;
+    border: 1px solid #e63946;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 1.0em;
+    line-height: 1;
+}
+
+.btn-eliminar:hover {
+    background: #e63946;
+    color: white;
+}
+
+/* Ocultar vistas */
+.view.hidden {
+    display: none !important;
+}

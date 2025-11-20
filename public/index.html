@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbería | Control de Ingresos</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <script defer src="src/js/app.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div id="logo-container">
+            <span class="logo-text">MENSCLUB-BARBERSHOP</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="nav-menu">
+            <button class="nav-button active" data-view="registro">Registro Diario</button>
+            <button class="nav-button" data-view="informes">Informes y Reportes</button>
+        </nav>
+
+        <div id="registro-view" class="view active">
+            <h2>Registro de Servicios</h2>
+
+            <div class="card card-form">
+                <select id="tipoCorte">
+                    <option value="">Selecciona un servicio</option>
+                    <option value="Corte normal">Corte normal</option>
+                    <option value="Fade">Fade</option>
+                    <option value="Barba">Barba</option>
+                </select>
+
+                <input type="number" id="precio" placeholder="Precio C$" readonly />
+                <button id="btnRegistrar">Registrar Ingreso</button>
+            </div>
+
+            <div class="section-header">
+                <h3>Ingresos de Hoy: <span id="totalDiario">0.00</span> C$</h3>
+            </div>
+            
+            <div id="listaRegistros" class="lista-servicios">
+                </div>
+        </div>
+
+        <div id="informes-view" class="view hidden">
+            <h2>Análisis de Ingresos</h2>
+
+            <div class="card card-metrics">
+                <div class="total-box">
+                    <span>Total Semanal</span>
+                    <strong id="totalSemanal">0.00 C$</strong>
+                </div>
+                <div class="total-box">
+                    <span>Total Quincenal</span>
+                    <strong id="totalQuincenal">0.00 C$</strong>
+                </div>
+                <div class="total-box">
+                    <span>Total Mensual</span>
+                    <strong id="totalMensual">0.00 C$</strong>
+                </div>
+            </div>
+
+            <div class="card card-actions">
+                <h4>Historial por Fechas</h4>
+                <div class="action-group">
+                    <label for="fecha-filtro">Fecha a Consultar:</label>
+                    <input type="date" id="fecha-filtro">
+                    <button id="btnFiltrar">Ver Ingresos</button>
+                    <button id="btnExportar" class="secondary-btn">Exportar a Excel</button>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h3>Ingresos del Periodo: <span id="totalPeriodo">0.00</span> C$</h3>
+            </div>
+            
+            <div id="listaInformes" class="lista-servicios">
+                </div>
+        </div>
+    </div> </body>
+</html>
