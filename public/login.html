@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Barbería</title>
+    <link rel="stylesheet" href="src/css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Bienvenido a <strong>MensClub</strong></h2>
+            <p>Ingresa con tu usuario y contraseña</p>
+
+            <input type="text" id="usuario" placeholder="Usuario">
+            <input type="password" id="contraseña" placeholder="Contraseña">
+
+            <button id="btnLogin">Ingresar</button>
+            <div id="mensaje" class="mensaje"></div>
+        </div>
+    </div>
+
+    <!-- JS al final para asegurar carga -->
+    <script src="src/js/login.js"></script>
+</body>
+</html>
