@@ -319,5 +319,5 @@ document.getElementById("btnLogout").addEventListener("click", () => {
 
 //direccionando al catalogo
 document.getElementById("btnCatalogo").addEventListener("click", () => {
-    window.location.href = "/public/cliente/catalogo.html";
+    window.location.href = "cliente/catalogo.html";
 });
