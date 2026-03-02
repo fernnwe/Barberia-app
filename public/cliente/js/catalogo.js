@@ -72,5 +72,5 @@ filtros.forEach(btn=>{
 });
 
 function irInicio() {
-    window.location.href = "/public/index.html";
+    window.location.href = "../../index.html";
 }
