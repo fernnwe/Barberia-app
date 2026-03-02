@@ -1,10 +1,15 @@
 console.log("login.js cargado correctamente");
 
-// Inicializar Supabase
-const SUPABASE_URL = "https://dcbwwcdsmbwlphrlsnyf.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjYnd3Y2RzbWJ3bHBocmxzbnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM2MDkyODksImV4cCI6MjA3OTE4NTI4OX0.KwKgpL1JsVpTlPqmGhtlHaH7uIg6nsP2dtilqEJrKUo";
+// 🔒 Si ya hay sesión activa, no mostrar login
+const usuarioActivo = localStorage.getItem("usuarioLogueado");
+if (usuarioActivo) {
+    window.location.href = "index.html";
+}
 
-// Crear cliente Supabase
+// Inicializar Supabase
+const SUPABASE_URL = "https://zfxxvgbnhqenewdfgaqv.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmeHh2Z2JuaHFlbmV3ZGZnYXF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0MDgzMjgsImV4cCI6MjA4Nzk4NDMyOH0.t6LhYjK6ZBQdZiwo8Pzgo1zlwNH3ldHe_gJQh4Mb5I4"; // usa la tuya real
+
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Elementos del DOM
@@ -18,7 +23,6 @@ btnLogin.addEventListener("click", async () => {
     const usuario = usuarioInput.value.trim();
     const contraseña = contraseñaInput.value.trim();
 
-    // Validar campos vacíos
     if (!usuario || !contraseña) {
         mensajeDiv.style.color = "#f87171";
         mensajeDiv.textContent = "Por favor ingresa usuario y contraseña";
@@ -26,13 +30,12 @@ btnLogin.addEventListener("click", async () => {
     }
 
     try {
-        // Consultar Supabase
         const { data, error } = await supabaseClient
             .from("usuarios")
             .select("*")
             .eq("usuario", usuario)
             .eq("contraseña", contraseña)
-            .single(); // devuelve un solo objeto
+            .single();
 
         if (error) throw error;
 
@@ -42,11 +45,14 @@ btnLogin.addEventListener("click", async () => {
             return;
         }
 
-        // Login exitoso
+        // ✅ LOGIN EXITOSO
         mensajeDiv.style.color = "#4ade80";
         mensajeDiv.textContent = `¡Bienvenido, ${data.nombre}!`;
 
-        // Redirigir al dashboard
+        // 🔒 GUARDAR SESIÓN
+        localStorage.setItem("usuarioLogueado", data.usuario);
+        localStorage.setItem("nombreUsuario", data.nombre);
+
         setTimeout(() => {
             window.location.href = "index.html";
         }, 1000);

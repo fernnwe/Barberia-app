@@ -1,5 +1,5 @@
-const SUPABASE_URL = "https://dcbwwcdsmbwlphrlsnyf.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjYnd3Y2RzbWJ3bHBocmxzbnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM2MDkyODksImV4cCI6MjA3OTE4NTI4OX0.KwKgpL1JsVpTlPqmGhtlHaH7uIg6nsP2dtilqEJrKUo";
+const SUPABASE_URL = "https://zfxxvgbnhqenewdfgaqv.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmeHh2Z2JuaHFlbmV3ZGZnYXF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0MDgzMjgsImV4cCI6MjA4Nzk4NDMyOH0.t6LhYjK6ZBQdZiwo8Pzgo1zlwNH3ldHe_gJQh4Mb5I4";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -300,3 +300,18 @@ btnExportar.addEventListener("click", exportarAExcel);
 
 // Inicializar la aplicación: cargar registros y establecer la vista por defecto
 cargarRegistros();
+
+// 🔐 PROTEGER DASHBOARD
+const usuario = localStorage.getItem("usuarioLogueado");
+
+if (!usuario) {
+    window.location.href = "login.html";
+}
+
+// 🚪 CERRAR SESIÓN
+document.getElementById("btnLogout").addEventListener("click", () => {
+    if(confirm("¿Deseas cerrar sesión?")){
+        localStorage.removeItem("usuarioLogueado");
+        window.location.href = "login.html";
+    }
+});
