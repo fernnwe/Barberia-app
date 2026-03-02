@@ -52,7 +52,7 @@ function render(cat="todos"){
     .forEach(c=>{
         grid.innerHTML += `
         <div class="card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIJkA0oO-gnhpTZ9V2P2noW5anDxqCt95rMA&s" />
+            <img src="https://media.istockphoto.com/id/1321048753/es/vector/los-hombres-se-dirigen-entre-la-luz-del-poste-de-la-barber%C3%ADa.jpg?s=612x612&w=0&k=20&c=NVyDVgtRlSB8TSVlamAeQ62AzYK9Pqg99dR3QTBbRbI=" />
             <div class="info">
                 <h3>${c.nombre}</h3>
                 <div class="price">C$ ${c.precio}</div>
