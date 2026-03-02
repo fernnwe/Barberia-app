@@ -1,19 +1,19 @@
 /* =========================
-   VARIABLES DE DISEÑO BARBERÍA
+   VARIABLES DE DISEÑO BARBERÍA EUROPEA
 ========================= */
 :root {
-    --color-bg: #f5f5f5;
+    --color-bg: #1b1b1b;          /* fondo oscuro elegante */
     --color-header: #111111;
-    --color-card: #ffffff;
-    --color-accent: #ffb700;
-    --color-accent-dark: #e6a700;
-    --color-text-dark: #2b2b2b;
-    --color-text-light: #f4f4f4;
-    --color-border: #e0e0e0;
-    --color-shadow-light: rgba(0, 0, 0, 0.05);
-    --color-shadow-dark: rgba(0, 0, 0, 0.15);
+    --color-card: rgba(30,30,30,0.95); /* cards semi-transparente */
+    --color-accent: #FFD700;      /* dorado principal */
+    --color-accent-dark: #E6BE00; /* dorado secundario */
+    --color-text-dark: #F4F4F4;   /* texto claro */
+    --color-text-light: #cccccc;
+    --color-border: rgba(255,255,255,0.1);
+    --color-shadow-light: rgba(0,0,0,0.4);
+    --color-shadow-dark: rgba(0,0,0,0.7);
     --transition-speed: 0.3s;
-    --border-radius: 12px;
+    --border-radius: 16px;
     --card-padding: 25px;
 }
 
@@ -25,16 +25,13 @@
     margin: 0;
     padding: 0;
 }
-body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-    background: var(--color-bg);
-    color: var(--color-text-dark);
-    padding-top: 80px; /* espacio para header fijo */
-    line-height: 1.5;
-}
 
-h1{
-    text-align: center;
+body {
+    font-family: 'Playfair Display', serif; /* tipografía elegante */
+    background: linear-gradient(135deg, #1b1b1b, #2a2a2a);
+    color: var(--color-text-dark);
+    padding-top: 80px;
+    line-height: 1.5;
 }
 
 /* =========================
@@ -54,14 +51,64 @@ h1{
     z-index: 1000;
 }
 
+.header-content {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
 .logo-text {
     font-size: 2em;
     font-weight: 700;
-    color: var(--color-text-light);
+    color: var(--color-text-dark);
     letter-spacing: 2px;
 }
+
 .logo-text strong {
     color: var(--color-accent);
+}
+
+/* BOTONES HEADER */
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 10px 18px;
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.logout-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-header);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px var(--color-shadow-dark);
+}
+
+.catalogo-btn {
+    background: linear-gradient(45deg, #FFD700, #E6BE00);
+    color: #111;
+    border: none;
+    padding: 10px 16px;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.catalogo-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--color-shadow-dark);
 }
 
 /* =========================
@@ -74,24 +121,27 @@ h1{
 }
 
 /* =========================
-   NAVIGATION MENU
+   NAV MENU
 ========================= */
 .nav-menu {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
 }
+
 .nav-button {
     flex: 1;
     padding: 14px 20px;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border: 1px solid var(--color-border);
     border-bottom: none;
-    background: linear-gradient(145deg, #f8f8f8, #eaeaea);
+    background: rgba(255,255,255,0.05);
+    color: var(--color-text-light);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition: all var(--transition-speed);
 }
+
 .nav-button.active {
     background: var(--color-card);
     color: var(--color-accent);
@@ -106,18 +156,20 @@ h1{
 h2 {
     font-size: 1.8em;
     font-weight: 700;
-    color: var(--color-text-dark);
-    border-left: 6px solid var(--color-accent);
+    color: var(--color-accent);
+    border-left: 6px solid var(--color-accent-dark);
     padding-left: 12px;
     margin-bottom: 25px;
     letter-spacing: 1px;
 }
+
 h3 {
     font-size: 1.3em;
     font-weight: 600;
     color: var(--color-text-dark);
     text-align: right;
 }
+
 h4 {
     font-size: 1.1em;
     font-weight: 600;
@@ -135,6 +187,7 @@ h4 {
     box-shadow: 0 8px 25px var(--color-shadow-dark);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
+
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px var(--color-shadow-dark);
@@ -149,13 +202,18 @@ input, select {
     margin-top: 12px;
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
+    background: rgba(255,255,255,0.05);
+    color: var(--color-text-dark);
     font-size: 0.95em;
-    transition: border var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    transition: all var(--transition-speed) ease;
 }
+
 input:focus, select:focus {
     border-color: var(--color-accent);
     box-shadow: 0 0 10px var(--color-shadow-light);
     outline: none;
+    background: rgba(255,255,255,0.15);
+    color: var(--color-text-dark);
 }
 
 /* =========================
@@ -168,23 +226,26 @@ button {
     font-weight: 700;
     cursor: pointer;
     transition: all var(--transition-speed) ease;
-    box-shadow: 0 4px 10px var(--color-shadow-light);
 }
+
 #btnRegistrar, #btnFiltrar {
     background: linear-gradient(120deg, var(--color-accent), var(--color-accent-dark));
-    color: var(--color-header);
+    color: #111;
 }
+
 #btnRegistrar:hover, #btnFiltrar:hover {
     background: linear-gradient(120deg, var(--color-accent-dark), var(--color-accent));
     transform: translateY(-2px);
     box-shadow: 0 6px 15px var(--color-shadow-dark);
 }
+
 .secondary-btn {
-    background: #333;
+    background: rgba(255,255,255,0.1);
     color: var(--color-text-light);
 }
+
 .secondary-btn:hover {
-    background: #555;
+    background: rgba(255,255,255,0.2);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px var(--color-shadow-dark);
 }
@@ -197,25 +258,29 @@ button {
     gap: 15px;
     flex-wrap: wrap;
 }
+
 .total-box {
     flex: 1;
-    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    background: rgba(255,255,255,0.05);
     padding: 25px;
     border-radius: var(--border-radius);
     text-align: center;
-    box-shadow: 0 6px 20px var(--color-shadow-light);
+    box-shadow: 0 6px 20px var(--color-shadow-dark);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
+
 .total-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px var(--color-shadow-dark);
 }
+
 .total-box span {
     display: block;
     font-size: 0.85em;
-    color: #777;
+    color: #bbb;
     letter-spacing: 0.5px;
 }
+
 .total-box strong {
     display: block;
     font-size: 1.5em;
@@ -230,31 +295,36 @@ button {
 .lista-servicios {
     margin-top: 20px;
 }
+
 .registro {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 20px;
-    background: linear-gradient(145deg, #fafafa, #f0f0f0);
+    background: rgba(255,255,255,0.05);
     border-radius: var(--border-radius);
     margin-bottom: 12px;
     border-left: 6px solid var(--color-accent);
-    transition: all var(--transition-speed) ease;
+    transition: all var(--transition-speed);
 }
+
 .registro:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px var(--color-shadow-dark);
 }
+
 .tipo-corte {
     font-weight: 600;
     font-size: 1em;
 }
+
 .precio-corte {
     font-weight: 700;
     font-size: 1.15em;
     color: var(--color-accent);
     margin-right: 15px;
 }
+
 .btn-eliminar {
     width: 32px;
     height: 32px;
@@ -267,6 +337,7 @@ button {
     cursor: pointer;
     transition: all var(--transition-speed);
 }
+
 .btn-eliminar:hover {
     background: #e63946;
     color: #fff;
@@ -297,55 +368,4 @@ button {
         align-items: flex-start;
         gap: 8px;
     }
-}
-
-
-/* HEADER FLEX */
-.header-content{
-    width:100%;
-    max-width:900px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 20px;
-}
-
-/* BOTÓN LOGOUT */
-.logout-btn{
-    background:transparent;
-    border:2px solid var(--color-accent);
-    color:var(--color-accent);
-    padding:10px 18px;
-    border-radius:8px;
-    font-weight:700;
-    cursor:pointer;
-    transition:all .3s ease;
-}
-
-.logout-btn:hover{
-    background:var(--color-accent);
-    color:#111;
-    transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(0,0,0,.2);
-}
-
-.header-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.catalogo-btn {
-    background: linear-gradient(45deg, #d4af37, #f5d76e);
-    color: #111;
-    border: none;
-    padding: 10px 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.catalogo-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }

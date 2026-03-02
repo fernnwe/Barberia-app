@@ -1,15 +1,17 @@
 :root{
-    --gold:#ffb700;
-    --gold-dark:#e6a700;
-    --text:#ffffff;
-    --glass:rgba(255,255,255,0.08);
+    --gold:#FFD700;        /* dorado elegante */
+    --gold-dark:#E6BE00;   /* dorado más oscuro para sombras */
+    --white:#FFFFFF;
+    --text:#F2F2F2;        /* texto claro */
+    --glass:rgba(0,0,0,0.5); /* card semi-transparente */
+    --shadow:rgba(0,0,0,0.7);
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Playfair Display', serif; /* tipografía elegante tipo europeo */
 }
 
 body{
@@ -17,18 +19,19 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#0f0f0f;
+    background: linear-gradient(135deg, #1b1b1b, #2c2c2c);
     overflow:hidden;
 }
 
-/* Fondo animado */
+/* Fondo con partículas doradas sutiles */
 .background{
     position:fixed;
     width:200%;
     height:200%;
-    background: radial-gradient(circle at 20% 20%, #ffb70022, transparent 40%),
-                radial-gradient(circle at 80% 80%, #ffb70033, transparent 40%);
-    animation: moveBg 15s linear infinite;
+    background: radial-gradient(circle at 20% 20%, #FFD70022, transparent 40%),
+                radial-gradient(circle at 80% 80%, #FFD70033, transparent 40%);
+    animation: moveBg 25s linear infinite;
+    z-index:1;
 }
 
 @keyframes moveBg{
@@ -40,18 +43,18 @@ body{
     position:relative;
     z-index:2;
     width:100%;
-    max-width:380px;
+    max-width:420px;
     padding:20px;
 }
 
 .login-card{
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(15px);
     background: var(--glass);
-    border-radius:20px;
-    padding:40px;
+    border-radius:25px;
+    padding:50px 40px;
     text-align:center;
-    border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 20px 50px rgba(0,0,0,0.6);
+    border:2px solid rgba(255,215,0,0.5);
+    box-shadow:0 15px 50px var(--shadow);
     animation: fadeIn 1s ease;
 }
 
@@ -61,21 +64,28 @@ body{
 }
 
 .logo{
-    font-size:50px;
-    margin-bottom:10px;
+    font-size:80px;
+    margin-bottom:15px;
+    color:var(--gold);
+    text-shadow:0 2px 10px rgba(255,215,0,0.6);
 }
 
 h2{
     color:var(--gold);
+    font-weight:bold;
     margin-bottom:5px;
+    letter-spacing:2px;
+    font-size:28px;
 }
 
 p{
-    color:#aaa;
-    margin-bottom:30px;
+    color:var(--text);
+    margin-bottom:35px;
+    font-size:14px;
+    font-weight:500;
 }
 
-/* Inputs modernos */
+/* Inputs elegantes */
 .input-group{
     position:relative;
     margin-bottom:25px;
@@ -83,32 +93,40 @@ p{
 
 input{
     width:100%;
-    padding:15px;
+    padding:15px 15px;
     border-radius:12px;
     border:1px solid rgba(255,255,255,0.2);
-    background:transparent;
-    color:white;
+    background: rgba(255,255,255,0.05);
+    color:var(--white);
     font-size:15px;
     outline:none;
+    transition:0.3s;
+}
+
+input:focus{
+    border:2px solid var(--gold);
+    box-shadow:0 5px 20px rgba(255,215,0,0.5);
+    background: rgba(255,255,255,0.1);
 }
 
 label{
     position:absolute;
     left:15px;
     top:15px;
-    color:#aaa;
+    color:#ccc;
     pointer-events:none;
     transition:0.3s;
+    background: rgba(0,0,0,0.5);
+    padding:0 5px;
+    font-weight:500;
 }
 
 input:focus + label,
 input:not(:placeholder-shown) + label{
-    top:-8px;
-    left:12px;
+    top:-10px;
+    left:10px;
     font-size:12px;
-    color:var(--gold);
-    background:#0f0f0f;
-    padding:0 6px;
+    color:var(--gold-dark);
 }
 
 /* Botón premium */
@@ -117,27 +135,29 @@ button{
     padding:15px;
     border:none;
     border-radius:12px;
-    background:linear-gradient(45deg,var(--gold),#ffda6a);
-    color:black;
+    background:linear-gradient(90deg, var(--gold), var(--gold-dark));
+    color:#1b1b1b;
     font-weight:bold;
     font-size:16px;
     cursor:pointer;
     transition:0.3s;
-    box-shadow:0 10px 30px rgba(255,183,0,0.4);
+    box-shadow:0 10px 30px rgba(255,215,0,0.6);
 }
 
 button:hover{
     transform:translateY(-3px);
-    box-shadow:0 15px 40px rgba(255,183,0,0.6);
+    box-shadow:0 15px 40px rgba(255,215,0,0.8);
 }
 
 .mensaje{
     margin-top:15px;
     font-size:14px;
+    color:#FF6B6B;
 }
 
 .footer{
     margin-top:25px;
     font-size:12px;
-    color:#666;
+    color:#ccc;
+    letter-spacing:1px;
 }
