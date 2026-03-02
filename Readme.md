@@ -1,1 +1,1 @@
-Sistema de barberia sencillo, implementado para mensclub barbershop
+Este sistema está enfocado para barberias, para que tengan un mejor control de sus negocios

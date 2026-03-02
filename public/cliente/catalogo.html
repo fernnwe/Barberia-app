@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo NicBarber</title>
+
+<link rel="stylesheet" href="/public/cliente/css/catalogo.css">
+<script defer src="/public/cliente/js/catalogo.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>Catálogo de Cortes</h1>
+
+    <button class="btn-volver" onclick="irInicio()">
+        ← Volver al Panel
+    </button>
+</header>
+
+<div class="container">
+
+    <div class="filters">
+        <button class="filter active" data-cat="todos">Todos</button>
+        <button class="filter" data-cat="clasicos">Clásicos</button>
+        <button class="filter" data-cat="fade">Fade</button>
+        <button class="filter" data-cat="modernos">Modernos</button>
+        <button class="filter" data-cat="barba">Barba</button>
+    </div>
+
+    <div id="catalogo" class="grid"></div>
+
+</div>
+
+</body>
+</html>

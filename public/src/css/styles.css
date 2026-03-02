@@ -328,3 +328,24 @@ button {
     transform:translateY(-2px);
     box-shadow:0 6px 15px rgba(0,0,0,.2);
 }
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.catalogo-btn {
+    background: linear-gradient(45deg, #d4af37, #f5d76e);
+    color: #111;
+    border: none;
+    padding: 10px 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.catalogo-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
