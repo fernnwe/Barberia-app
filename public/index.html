@@ -4,91 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbería | Control de Ingresos</title>
+
+    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- ICONOS PRO -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
     <link rel="stylesheet" href="src/css/styles.css">
     <script defer src="src/js/app.js"></script>
 </head>
 <body>
 
- <header class="header">
+<header class="header">
     <div class="header-content">
         <span class="logo-text">NicaBarber</span>
 
         <div class="header-actions">
-            <button id="btnCatalogo" class="catalogo-btn">
-                Ver Catálogo
-            </button>
-
-            <button id="btnLogout" class="logout-btn">
-                Cerrar Sesión
-            </button>
+            <button id="btnCatalogo" class="catalogo-btn">Ver Catálogo</button>
+            <button id="btnLogout" class="logout-btn">Cerrar Sesión</button>
         </div>
     </div>
 </header>
 
-    <div class="container">
-        <nav class="nav-menu">
-            <button class="nav-button active" data-view="registro">Registro Diario</button>
-            <button class="nav-button" data-view="informes">Informes y Reportes</button>
-        </nav>
+<div class="container">
 
-        <div id="registro-view" class="view active">
-            <h2>Registro de Servicios</h2>
+    <nav class="nav-menu">
+        <button class="nav-button active" data-view="registro">Registro Diario</button>
+        <button class="nav-button" data-view="informes">Informes y Reportes</button>
+    </nav>
 
-            <div class="card card-form">
-                <select id="tipoCorte">
-                    <option value="">Selecciona un servicio</option>
-                    <option value="Corte normal">Resurada anal</option>
-                    <option value="Fade">Resurada de huevo</option>
-                    <option value="Barba">Fade de pussy</option>
-                </select>
+    <!-- ================= REGISTRO ================= -->
+    <div id="registro-view" class="view active">
+    <h2>Registro de Servicios</h2>
 
-                <input type="number" id="precio" placeholder="Precio C$" readonly />
-                <button id="btnRegistrar">Registrar Ingreso</button>
+    <!-- SELECTOR VISUAL DE SERVICIOS -->
+    <div class="card service-selector">
+
+        <h4 class="section-title">
+    <i class="fa-solid fa-scissors"></i>
+    Seleccionar Servicio
+</h4>
+
+<button id="btnNuevoServicio" class="btn-add-service">
+    <i class="fa-solid fa-plus"></i> Nuevo Servicio
+</button>
+
+        <div class="services-grid">
+
+            <div class="service-card" data-servicio="Corte normal" data-precio="150">
+                <i class="fa-solid fa-user"></i>
+                <span>Corte</span>
+                <small>C$150</small>
             </div>
 
-            <div class="section-header">
-                <h3>Ingresos de Hoy: <span id="totalDiario">0.00</span> C$</h3>
+            <div class="service-card" data-servicio="Fade" data-precio="200">
+                <i class="fa-solid fa-fire"></i>
+                <span>Fade</span>
+                <small>C$200</small>
             </div>
-            
-            <div id="listaRegistros" class="lista-servicios">
-                </div>
+
+            <div class="service-card" data-servicio="Barba" data-precio="120">
+                <i class="fa-solid fa-scissors"></i>
+                <span>Barba</span>
+                <small>C$120</small>
+            </div>
+
         </div>
 
-        <div id="informes-view" class="view hidden">
-            <h2>Análisis de Ingresos</h2>
+        <input type="hidden" id="tipoCorte">
+        <input type="number" id="precio" readonly />
 
-            <div class="card card-metrics">
-                <div class="total-box">
+        <button id="btnRegistrar" class="btn-registrar-pro">
+            <i class="fa-solid fa-cash-register"></i>
+            Registrar Ingreso
+        </button>
+
+    </div>
+
+    <!-- TOTAL DEL DÍA -->
+    <div class="card total-dia-card">
+        <div class="total-dia-content">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <div>
+                <span>Ingresos de Hoy</span>
+                <strong id="totalDiario">0.00 C$</strong>
+            </div>
+        </div>
+    </div>
+
+    <div id="listaRegistros" class="lista-servicios"></div>
+</div>
+
+    <!-- ================= INFORMES ================= -->
+    <div id="informes-view" class="view hidden">
+        <h2>Análisis de Ingresos</h2>
+
+        <!-- DASHBOARD METRICS PRO -->
+        <div class="card card-metrics">
+
+            <div class="metric-card weekly">
+                <div class="metric-icon">
+                    <i class="fa-solid fa-calendar-week"></i>
+                </div>
+                <div class="metric-info">
                     <span>Total Semanal</span>
                     <strong id="totalSemanal">0.00 C$</strong>
                 </div>
-                <div class="total-box">
+            </div>
+
+            <div class="metric-card biweekly">
+                <div class="metric-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div class="metric-info">
                     <span>Total Quincenal</span>
                     <strong id="totalQuincenal">0.00 C$</strong>
                 </div>
-                <div class="total-box">
+            </div>
+
+            <div class="metric-card monthly">
+                <div class="metric-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="metric-info">
                     <span>Total Mensual</span>
                     <strong id="totalMensual">0.00 C$</strong>
                 </div>
             </div>
 
-            <div class="card card-actions">
-                <h4>Historial por Fechas</h4>
-                <div class="action-group">
-                    <label for="fecha-filtro">Fecha a Consultar:</label>
-                    <input type="date" id="fecha-filtro">
-                    <button id="btnFiltrar">Ver Ingresos</button>
-                    <button id="btnExportar" class="secondary-btn">Exportar a Excel</button>
-                </div>
-            </div>
-
-            <div class="section-header">
-                <h3>Ingresos del Periodo: <span id="totalPeriodo">0.00</span> C$</h3>
-            </div>
-            
-            <div id="listaInformes" class="lista-servicios">
-                </div>
         </div>
-    </div> </body>
+
+        <!-- FILTROS -->
+        <div class="card card-actions">
+            <h4>Historial por Fechas</h4>
+            <div class="action-group">
+                <label for="fecha-filtro">Fecha a Consultar:</label>
+                <input type="date" id="fecha-filtro">
+                <button id="btnFiltrar">Ver Ingresos</button>
+                <button id="btnExportar" class="secondary-btn">
+                    <i class="fa-solid fa-file-excel"></i> Exportar a Excel
+                </button>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h3>Ingresos del Periodo: <span id="totalPeriodo">0.00</span> C$</h3>
+        </div>
+
+        <div id="listaInformes" class="lista-servicios"></div>
+
+    </div>
+</div>
+
+<!-- MODAL NUEVO SERVICIO -->
+<div id="modalServicio" class="modal hidden">
+    <div class="modal-content">
+        <h3><i class="fa-solid fa-scissors"></i> Nuevo Servicio</h3>
+
+        <input type="text" id="nuevoNombre" placeholder="Nombre del servicio">
+        <input type="number" id="nuevoPrecio" placeholder="Precio C$">
+
+        <div class="modal-actions">
+            <button id="guardarServicio">Guardar</button>
+            <button id="cancelarServicio" class="secondary-btn">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>

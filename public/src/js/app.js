@@ -321,3 +321,58 @@ document.getElementById("btnLogout").addEventListener("click", () => {
 document.getElementById("btnCatalogo").addEventListener("click", () => {
     window.location.href = "cliente/catalogo.html";
 });
+
+// Selección visual de servicios
+document.querySelectorAll(".service-card").forEach(card => {
+    card.addEventListener("click", () => {
+
+        document.querySelectorAll(".service-card")
+            .forEach(c => c.classList.remove("selected"));
+
+        card.classList.add("selected");
+
+        document.getElementById("tipoCorte").value = card.dataset.servicio;
+        document.getElementById("precio").value = card.dataset.precio;
+    });
+});
+
+const modal = document.getElementById("modalServicio");
+const btnNuevoServicio = document.getElementById("btnNuevoServicio");
+
+btnNuevoServicio.onclick = () => modal.classList.remove("hidden");
+document.getElementById("cancelarServicio").onclick = () => modal.classList.add("hidden");
+
+document.getElementById("guardarServicio").onclick = () => {
+
+    const nombre = document.getElementById("nuevoNombre").value;
+    const precio = document.getElementById("nuevoPrecio").value;
+
+    if(!nombre || !precio) return alert("Completa los datos");
+
+    const grid = document.querySelector(".services-grid");
+
+    const card = document.createElement("div");
+    card.className = "service-card";
+    card.dataset.servicio = nombre;
+    card.dataset.precio = precio;
+
+    card.innerHTML = `
+        <i class="fa-solid fa-scissors"></i>
+        <span>${nombre}</span>
+        <small>C$${precio}</small>
+    `;
+
+    grid.appendChild(card);
+
+    // activar selección
+    card.addEventListener("click", () => {
+        document.querySelectorAll(".service-card").forEach(c => c.classList.remove("selected"));
+        card.classList.add("selected");
+        document.getElementById("tipoCorte").value = nombre;
+        document.getElementById("precio").value = precio;
+    });
+
+    modal.classList.add("hidden");
+    document.getElementById("nuevoNombre").value="";
+    document.getElementById("nuevoPrecio").value="";
+};

@@ -45,11 +45,11 @@ btnLogin.addEventListener("click", async () => {
             return;
         }
 
-        // ✅ LOGIN EXITOSO
+        // Registro de Login
         mensajeDiv.style.color = "#4ade80";
         mensajeDiv.textContent = `¡Bienvenido, ${data.nombre}!`;
 
-        // 🔒 GUARDAR SESIÓN
+        // GUARDAR SESIÓN
         localStorage.setItem("usuarioLogueado", data.usuario);
         localStorage.setItem("nombreUsuario", data.nombre);
 
